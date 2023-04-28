@@ -1,5 +1,4 @@
-// Step 1: Import React
-import * as React from "react";
+import React from "react";
 import Layout from "../components/Layout";
 import { StaticImage } from "gatsby-plugin-image";
 import Seo from "../components/seo";
