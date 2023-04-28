@@ -1,7 +1,7 @@
 import * as React from "react";
 import Layout from "../../components/Layout";
-import Seo from "../../components/Seo";
 import { Link, graphql } from "gatsby";
+import Seo from "../../components/seo";
 
 const pageTitle = "My Blog Posts";
 

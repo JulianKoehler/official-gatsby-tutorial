@@ -1,7 +1,7 @@
 // Step 1: Import React
 import * as React from "react";
 import Layout from "../components/Layout";
-import Seo from "../../components/Seo";
+import Seo from "../components/seo";
 
 // Step 2: Define your component
 const AboutPage = () => {
