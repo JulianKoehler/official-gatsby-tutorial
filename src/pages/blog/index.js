@@ -1,7 +1,6 @@
 import React from "react";
 import Layout from "../../components/Layout";
 import { Link, graphql } from "gatsby";
-import Seo from "../../components/Seo";
 
 const pageTitle = "My Blog Posts";
 
@@ -39,6 +38,6 @@ export const query = graphql`
   }
 `;
 
-export const Head = () => <Seo pageTitle={pageTitle} />;
+// export const Head = () => <Seo pageTitle={pageTitle} />;
 
 export default BlogPage;
