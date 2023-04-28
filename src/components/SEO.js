@@ -1,7 +1,7 @@
 import React from "react";
 import useSiteMetadata from "../hooks/useSiteMetadata";
 
-const SEO = ({ pageTitle }) => {
+const Seo = ({ pageTitle }) => {
   const { title } = useSiteMetadata();
 
   return (
@@ -11,4 +11,4 @@ const SEO = ({ pageTitle }) => {
   );
 };
 
-export default SEO;
+export default Seo;
