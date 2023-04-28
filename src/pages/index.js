@@ -1,7 +1,7 @@
 import React from "react";
 import Layout from "../components/Layout";
 import { StaticImage } from "gatsby-plugin-image";
-import Seo from "../components/seo";
+import Seo from "../components/Seo";
 
 // Step 2: Define your component
 const IndexPage = () => {
