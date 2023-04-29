@@ -1,4 +1,4 @@
-import { Link, graphql, useStaticQuery } from "gatsby";
+import { Link } from "gatsby";
 import React from "react";
 import { heading, container, navLinks, navLinkItem, navLinkText, siteTitle } from "./layout.module.css";
 import useSiteMetadata from "../hooks/useSiteMetadata";
