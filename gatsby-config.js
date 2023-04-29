@@ -3,8 +3,9 @@
  */
 module.exports = {
   siteMetadata: {
-    siteUrl: `https://www.yourdomain.tld`,
+    siteUrl: `https://build-34005263-9485-42d2-9fe3-b08381db5474.gatsbyjs.io/`,
     title: "Welcome to my first Gatsby Site!",
+    description: "My Blog of cute cat posts.",
   },
   plugins: [
     "gatsby-plugin-image",

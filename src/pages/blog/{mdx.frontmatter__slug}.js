@@ -4,17 +4,28 @@ import { graphql } from "gatsby";
 import Seo from "../../components/Seo";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 
-const BlogPost = ({ data, children }) => {
+const BlogPost = ({ data, serverData, children }) => {
   const gatsbyImageData = getImage(data.mdx.frontmatter.hero_image);
+  const randomImage = serverData[0].url;
 
   return (
     <Layout pageTitle={data.mdx.frontmatter.title}>
       <p>From: {data.mdx.frontmatter.date}</p>
-      <GatsbyImage
-        image={gatsbyImageData}
-        alt={data.mdx.frontmatter.hero_image_alt}
-      />
+      {data.mdx.frontmatter.hero_image && (
+        <GatsbyImage
+          image={gatsbyImageData}
+          alt={data.mdx.frontmatter.hero_image_alt}
+        />
+      )}
+      {!gatsbyImageData && (
+        <img
+          src={randomImage}
+          alt="A cute random kitty"
+          width="600"
+        />
+      )}
       {children}
+      {!gatsbyImageData && <button onClick={() => window.location.reload()}>Get new Image!</button>}
     </Layout>
   );
 };
@@ -52,3 +63,23 @@ export default BlogPost;
  * - Use the StaticImage component if your component always renders the same image (from a relative path or a remote URL).
  * - Use the GatsbyImage component if the image source changes for different instances of your component (like if it gets passed in as a prop).
  */
+
+export async function getServerData() {
+  try {
+    const res = await fetch("https://api.thecatapi.com/v1/images/search");
+
+    if (!res.ok) {
+      throw new Error(`Response failed.`);
+    }
+
+    return {
+      props: await res.json(),
+    };
+  } catch (error) {
+    return {
+      status: 500,
+      headers: {},
+      props: {},
+    };
+  }
+}
