@@ -46,3 +46,9 @@ export const query = graphql`
 export const Head = ({ data }) => <Seo pageTitle={data.mdx.frontmatter.title} />;
 
 export default BlogPost;
+
+/**
+ * Key takeaways:
+ * - Use the StaticImage component if your component always renders the same image (from a relative path or a remote URL).
+ * - Use the GatsbyImage component if the image source changes for different instances of your component (like if it gets passed in as a prop).
+ */
