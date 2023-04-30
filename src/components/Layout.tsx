@@ -1,9 +1,14 @@
 import { Link } from "gatsby";
 import React from "react";
-import { heading, container, navLinks, navLinkItem, navLinkText, siteTitle } from "./layout.module.css";
+import { heading, container, navLinks, navLinkItem, navLinkText, siteTitle } from "../styles/layout.module.css";
 import useSiteMetadata from "../hooks/useSiteMetadata";
 
-const Layout = ({ pageTitle, children }) => {
+type LayoutProps = {
+  pageTitle: string;
+  children: React.ReactNode;
+};
+
+const Layout = ({ pageTitle, children }: LayoutProps) => {
   const { title } = useSiteMetadata();
 
   return (

@@ -1,12 +1,25 @@
 import React from "react";
 import Layout from "../../components/Layout";
-import { Link, graphql } from "gatsby";
+import { Link, PageProps, graphql } from "gatsby";
+import Seo from "../../components/Seo";
 
 const pageTitle = "My Blog Posts";
 
-const BlogPage = ({ data }) => {
-  console.log(data);
+type DataProps = {
+  allMdx: {
+    nodes: Array<{
+      frontmatter: {
+        title: string;
+        date: string;
+        slug: string;
+      };
+      id: string;
+      excerpt: string;
+    }>;
+  };
+};
 
+const BlogPage = ({ data }: PageProps<DataProps>) => {
   return (
     <Layout pageTitle={pageTitle}>
       {data.allMdx.nodes.map(post => (
@@ -38,6 +51,6 @@ export const query = graphql`
   }
 `;
 
-// export const Head = () => <Seo pageTitle={pageTitle} />;
+export const Head = () => <Seo pageTitle={pageTitle} />;
 
 export default BlogPage;

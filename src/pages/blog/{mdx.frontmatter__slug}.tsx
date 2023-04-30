@@ -1,19 +1,37 @@
 import React from "react";
 import Layout from "../../components/Layout";
-import { graphql } from "gatsby";
+import { GetServerDataProps, GetServerDataReturn, HeadProps, PageProps, graphql } from "gatsby";
 import Seo from "../../components/Seo";
-import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import { GatsbyImage, ImageDataLike, getImage } from "gatsby-plugin-image";
 
-const BlogPost = ({ data, serverData, children }) => {
+type DataProps = {
+  mdx: {
+    frontmatter: {
+      title: string;
+      date: string;
+      hero_image: ImageDataLike | null;
+      hero_image_alt: string;
+    };
+  };
+};
+
+type ServerDataProps = {
+  id?: string;
+  url?: string;
+  width?: number;
+  height?: number;
+}[];
+
+const BlogPost = ({ data, serverData, children }: PageProps<DataProps, object, unknown, ServerDataProps>) => {
   const gatsbyImageData = getImage(data.mdx.frontmatter.hero_image);
-  const randomImage = serverData[0].url;
+  const randomImage: ServerDataProps[0]["url"] = serverData[0].url;
 
   return (
     <Layout pageTitle={data.mdx.frontmatter.title}>
       <p>From: {data.mdx.frontmatter.date}</p>
       {data.mdx.frontmatter.hero_image && (
         <GatsbyImage
-          image={gatsbyImageData}
+          image={gatsbyImageData!}
           alt={data.mdx.frontmatter.hero_image_alt}
         />
       )}
@@ -54,7 +72,7 @@ export const query = graphql`
   }
 `;
 
-export const Head = ({ data }) => <Seo pageTitle={data.mdx.frontmatter.title} />;
+export const Head = ({ data }: HeadProps<DataProps>) => <Seo pageTitle={data.mdx.frontmatter.title} />;
 
 export default BlogPost;
 
@@ -64,7 +82,7 @@ export default BlogPost;
  * - Use the GatsbyImage component if the image source changes for different instances of your component (like if it gets passed in as a prop).
  */
 
-export async function getServerData() {
+export async function getServerData(props: GetServerDataProps): GetServerDataReturn<ServerDataProps | {}> {
   try {
     const res = await fetch("https://api.thecatapi.com/v1/images/search");
 

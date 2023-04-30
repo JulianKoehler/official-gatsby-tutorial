@@ -2,9 +2,12 @@ import React from "react";
 import Layout from "../components/Layout";
 import { StaticImage } from "gatsby-plugin-image";
 import Seo from "../components/Seo";
+import { PageProps } from "gatsby";
 
 // Step 2: Define your component
-const IndexPage = () => {
+const IndexPage = (props: PageProps) => {
+  console.log(props);
+
   return (
     <Layout pageTitle="Home Page">
       <p>I'm making this by following the official Gatsby Tutorial!</p>
