@@ -1,7 +1,11 @@
 import React from "react";
 import useSiteMetadata from "../hooks/useSiteMetadata";
 
-const Seo = ({ pageTitle }) => {
+type SeoProps = {
+  pageTitle: string;
+};
+
+const Seo = ({ pageTitle }: SeoProps) => {
   const { title } = useSiteMetadata();
 
   return (

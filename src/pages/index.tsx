@@ -20,7 +20,6 @@ const IndexPage = (props: PageProps) => {
   );
 };
 
-// You'll learn about this in the next task, just copy it for now
 export const Head = () => <Seo pageTitle="Home" />;
 
 // Step 3: Export your component
